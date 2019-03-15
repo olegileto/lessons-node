@@ -1,12 +1,17 @@
-const Joi = require('joi');
+const morgan  = require('morgan'); // HTTP request logger middleware for node.js
+const helmet = require('helmet'); // Helps secure our apps by setting various HTTP headers
+const Joi = require('joi'); // Validation
 const logger = require('./logger');
 const express = require('express');
+
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json()); // req.body
 app.use(express.urlencoded({extended: true})); // Middleware function urlencoded(); key=value&key=value
 app.use(express.static('public'));
+app.use(helmet()); // Helmet is a function
+app.use(morgan('tiny')); // Morgan is a function
 
 // Use the Middleware
 app.use(logger);
