@@ -5,12 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "setServer": "set NODE_ENV=development",
+    "debug": "set DEBUG=app:startup,app:db"
   },
   "keywords": [],
   "author": "Oleg Khmelevskoy",
   "license": "ISC",
   "dependencies": {
+    "config": "^3.0.1",
+    "debug": "^4.1.1",
     "express": "^4.16.4",
     "helmet": "^3.16.0",
     "joi": "^14.3.1",

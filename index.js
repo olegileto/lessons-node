@@ -1,3 +1,5 @@
+const debug = require('debug')('app:startup'); // Function for debuggers
+const config = require('config'); // Create configs and use this function for created configs
 const morgan  = require('morgan'); // HTTP request logger middleware for node.js
 const helmet = require('helmet'); // Helps secure our apps by setting various HTTP headers
 const Joi = require('joi'); // Validation
@@ -7,11 +9,26 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 
+// console.log(`NODE_ENV: ${process.env.NODE_ENV}`); //Our Env variable. We can change it to: Production, Development or Testing
+// console.log(`app ${app.get('env')}`);
+
 app.use(express.json()); // req.body
 app.use(express.urlencoded({extended: true})); // Middleware function urlencoded(); key=value&key=value
 app.use(express.static('public'));
 app.use(helmet()); // Helmet is a function
-app.use(morgan('tiny')); // Morgan is a function
+
+// Configuration
+console.log('Application Name: ' + config.get('name'));
+console.log('Mail Server: ' + config.get('mail.host'));
+console.log('Mail Password: ' + config.get('mail.password'));
+
+if (app.get('env') === 'development') { // Check our env: 'Production, Development or Testing machine'
+    app.use(morgan('tiny')); // Morgan is a function
+    debug('Morgan enabled...'); // Debug function, console.log('Morgan'); === debug('Morgan');
+}
+
+// Db works...
+// dbDebugger('Connected to the database...');
 
 // Use the Middleware
 app.use(logger);
