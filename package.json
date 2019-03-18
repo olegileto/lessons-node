@@ -6,8 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js",
-    "setServer": "set NODE_ENV=development",
-    "debug": "set DEBUG=app:startup,app:db"
+    "setServer": "set NODE_ENV=development"
   },
   "keywords": [],
   "author": "Oleg Khmelevskoy",
@@ -18,8 +17,10 @@
     "express": "^4.16.4",
     "helmet": "^3.16.0",
     "joi": "^14.3.1",
+    "mongodb": "^3.1.13",
     "mongoose": "^5.4.19",
     "morgan": "^1.9.1",
+    "pug": "^2.0.3",
     "underscore": "^1.9.1"
   }
 }
