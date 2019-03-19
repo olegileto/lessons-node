@@ -5,9 +5,9 @@ const helmet = require('helmet'); // Helps secure our apps by setting various HT
 const logger = require('./middleware/logger'); // Middleware logger
 const courses = require('./routes/courses'); // Module courses
 const home = require('./routes/home'); // Module home
-const express = require('express');
-const app = express();
-const port = process.env.PORT || 3000;
+const express = require('express'); // Set express
+const app = express(); // Set express function
+const port = process.env.PORT || 3000; // Use env.PORT variable or by default use port=3000
 
 app.set('view engine', 'pug'); // View template
 app.set('views', './views'); // default
@@ -16,7 +16,7 @@ app.use(express.json()); // req.body
 app.use(express.urlencoded({extended: true})); // Middleware function urlencoded(); key=value&key=value
 app.use(express.static('public'));
 app.use(helmet()); // Helmet is a function
-app.use('./api/courses', courses); // Our router from courses.js
+app.use('/api/courses', courses); // Our router from courses.js
 app.use('/', home); // Our router from home.js
 
 // Configuration
